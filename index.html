@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen Bishhi Dashboard</title>
+    <meta name="description" content="Secure and professional group savings tracker for NextGen Bishhi.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-area">
+                    <span class="logo-icon-wrap"><i data-lucide="shield-check"></i></span>
+                    <div class="logo-text">
+                        <h1>NextGen Bishhi</h1>
+                        <span class="tagline">Private Group Savings</span>
+                    </div>
+                </div>
+                <div class="menu-wrap">
+                    <button id="menu-btn" class="icon-btn" aria-label="Menu">
+                        <i data-lucide="more-vertical"></i>
+                    </button>
+                    <div id="dropdown-menu" class="dropdown-menu hidden">
+                        <button onclick="showSection('dashboard')"><i data-lucide="layout-dashboard"></i>
+                            Dashboard</button>
+                        <button onclick="showSection('members')"><i data-lucide="users"></i> Members</button>
+                        <button onclick="openLogin()"><i data-lucide="user-cog"></i> Admin Login</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="active">
+                <!-- Countdown Section -->
+                <div class="card countdown-card">
+                    <div class="countdown-header">
+                        <i data-lucide="calendar"></i>
+                        <span>NextGen Bishhi Closing In</span>
+                    </div>
+                    <div id="countdown-timer" class="timer-display">
+                        <div class="timer-unit">
+                            <span id="timer-days">00</span>
+                            <small>Days</small>
+                        </div>
+                    </div>
+                    <div class="start-date-info">Started: 7 Sep 2025 • Ends: 7 Aug 2026</div>
+                </div>
+
+                <!-- Collection Progress Section -->
+                <div class="card progress-card">
+                    <div class="card-header">
+                        <i data-lucide="trending-up"></i>
+                        <h3>Total Collection Progress</h3>
+                    </div>
+                    <div class="progress-details">
+                        <div class="total-collected">
+                            <span class="label">Collected</span>
+                            <span class="value" id="progress-collected">₹0</span>
+                        </div>
+                        <div class="remaining">
+                            <span class="label">Target</span>
+                            <span class="value" id="progress-target">₹10,00,000</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div id="progress-fill" class="progress-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-footer">
+                        <span id="progress-percentage">0% Completed</span>
+                        <span id="progress-remaining-text">₹10,00,000 to go</span>
+                    </div>
+                </div>
+
+                <!-- Summary Row -->
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <i data-lucide="database"></i>
+                        <div class="summary-info">
+                            <small>Real-time Collection</small>
+                            <h2 id="summary-total">₹0</h2>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <i data-lucide="users"></i>
+                        <div class="summary-info">
+                            <small>Total Members</small>
+                            <h2 id="summary-members">10</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transaction Section -->
+                <div class="card transactions-card">
+                    <div class="card-header flex-between">
+                        <div class="header-title">
+                            <i data-lucide="list"></i>
+                            <h3>Recent Transactions</h3>
+                        </div>
+                        <span class="live-indicator">
+                            <span class="dot"></span> LIVE
+                        </span>
+                    </div>
+
+                    <div class="table-container">
+                        <table id="transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Member Name</th>
+                                    <th>Amount Paid</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactions-body">
+                                <!-- Transactions will be inserted here by JS -->
+                            </tbody>
+                        </table>
+                        <div id="empty-state" class="empty-state hidden">
+                            <i data-lucide="inbox"></i>
+                            <p>No transactions yet</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Members Section -->
+            <section id="members-section" class="hidden">
+                <div class="card member-summary-card">
+                    <div class="card-header">
+                        <i data-lucide="users"></i>
+                        <h3>Group Members (10)</h3>
+                    </div>
+                    <div class="member-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Contributions</span>
+                            <span class="stat-value" id="members-total-contributions">₹0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Avg. per Member</span>
+                            <span class="stat-value" id="members-avg-contribution">₹0</span>
+                        </div>
+                    </div>
+                    <div class="member-list" id="member-list">
+                        <!-- Members will be listed here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modals -->
+
+        <!-- Login Modal -->
+        <div id="login-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Admin Login</h3>
+                    <button class="close-btn" onclick="closeModal('login-modal')">&times;</button>
+                </div>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input type="text" id="login-id" placeholder="Enter ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="password-input">
+                            <input type="password" id="login-password" placeholder="Enter Password" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="primary-btn">Login</button>
+                    <p id="login-error" class="error-msg hidden">Invalid ID or Password</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin Add Payment Modal -->
+        <div id="admin-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add Member Payment</h3>
+                    <button class="close-btn" onclick="closeModal('admin-modal')">&times;</button>
+                </div>
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label>Member Name</label>
+                        <select id="payment-member" required>
+                            <option value="" disabled selected>Select Member</option>
+                            <option>Swapnil</option>
+                            <option>Member 2</option>
+                            <option>Member 3</option>
+                            <option>Member 4</option>
+                            <option>Member 5</option>
+                            <option>Member 6</option>
+                            <option>Member 7</option>
+                            <option>Member 8</option>
+                            <option>Member 9</option>
+                            <option>Member 10</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount (₹)</label>
+                        <input type="number" id="payment-amount" placeholder="Enter Amount" required min="1">
+                    </div>
+                    <div class="form-info">
+                        <p><i data-lucide="clock"></i> Date & Time will be auto-recorded.</p>
+                    </div>
+                    <button type="submit" class="primary-btn">Submit Payment</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Notification Toast -->
+        <div id="toast" class="toast hidden">
+            <span id="toast-message"></span>
+        </div>
+
+        <!-- Tab Bar for Mobile Navigation -->
+        <nav class="nav-tabs">
+            <button onclick="showSection('dashboard')" id="tab-dashboard" class="tab-item active">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Dashboard</span>
+            </button>
+            <button onclick="showSection('members')" id="tab-members" class="tab-item">
+                <i data-lucide="users"></i>
+                <span>Members</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
