@@ -4,7 +4,7 @@ lucide.createIcons();
 // Configuration
 const CLOSING_DATE = new Date('August 7, 2026 23:59:59').getTime();
 const START_DATE = new Date('September 7, 2025 00:00:00').getTime();
-const TARGET_AMOUNT = 500000; // Updated target to a more realistic group bishhi amount 
+const TARGET_AMOUNT = 1,20,000; // Updated target to a more realistic group bishhi amount 
 const ADMIN_ID = 'swapnil0709';
 const ADMIN_PASS = 'S161212p@0709';
 
@@ -18,16 +18,16 @@ let isAdmin = false;
 
 // Pre-defined Members
 const members = [
-    { name: 'Swapnil', total: 0 },
-    { name: 'Member 2', total: 0 },
-    { name: 'Member 3', total: 0 },
-    { name: 'Member 4', total: 0 },
-    { name: 'Member 5', total: 0 },
-    { name: 'Member 6', total: 0 },
-    { name: 'Member 7', total: 0 },
-    { name: 'Member 8', total: 0 },
-    { name: 'Member 9', total: 0 },
-    { name: 'Member 10', total: 0 }
+    { name: 'Swapnil patil1', total: 0 },
+    { name: 'Swapnil patil12', total: 0 },
+    { name: 'Prajyot chougule', total: 0 },
+    { name: 'Rushikesh chougule', total: 0 },
+    { name: 'Shivam patil', total: 0 },
+    { name: 'Prajwal chougule', total: 0 },
+    { name: 'Suraj nalawade1', total: 0 },
+    { name: 'Suraj nalawade2', total: 0 },
+    { name: 'Devaraj patil', total: 0 },
+    { name: 'Pratik patil', total: 0 }
 ];
 
 // Initialize UI
@@ -294,3 +294,4 @@ function showToast(message) {
         toast.classList.add('hidden');
     }, 3000);
 }
+
