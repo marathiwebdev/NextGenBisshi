@@ -4,23 +4,20 @@ lucide.createIcons();
 // Configuration
 const CLOSING_DATE = new Date('August 7, 2026 23:59:59').getTime();
 const START_DATE = new Date('September 7, 2025 00:00:00').getTime();
-const TARGET_AMOUNT = 1,20,000; // Updated target to a more realistic group bishhi amount 
+const TARGET_AMOUNT = 120000;
 const ADMIN_ID = 'swapnil0709';
 const ADMIN_PASS = 'S161212p@0709';
 
 // State Management
-let transactions = JSON.parse(localStorage.getItem('bishhi_transactions')) || [
-    { name: 'Swapnil', amount: 5000, date: '01/03/2026', time: '14:30', timestamp: 1740825000000 },
-    { name: 'Member 2', amount: 5000, date: '28/02/2026', time: '10:15', timestamp: 1740725700000 }
-];
+let transactions = JSON.parse(localStorage.getItem('bishhi_transactions')) || [];
 let currentSection = 'dashboard';
 let isAdmin = false;
 
 // Pre-defined Members
 const members = [
     { name: 'Swapnil patil1', total: 0 },
-    { name: 'Swapnil patil12', total: 0 },
-    { name: 'Prajyot chougule', total: 0 },
+    { name: 'Swapnil patil2', total: 0 },
+    { name: 'Prajyot Chougule', total: 0 },
     { name: 'Rushikesh chougule', total: 0 },
     { name: 'Shivam patil', total: 0 },
     { name: 'Prajwal chougule', total: 0 },
@@ -145,7 +142,10 @@ function updateCountdown() {
     }
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
     document.getElementById('timer-days').innerText = days;
+    document.getElementById('timer-hours').innerText = hours;
 }
 
 // Navigation Logic
@@ -294,4 +294,3 @@ function showToast(message) {
         toast.classList.add('hidden');
     }, 3000);
 }
-
